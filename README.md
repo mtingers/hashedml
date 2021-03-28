@@ -4,8 +4,15 @@ A machine learning library that uses a different approach: string hashing
 
 # Installation
 
+PyPI (not available yet):
 ```
 pip install -U hashedml
+```
+
+setup.py:
+```
+python setup.py build
+python setup.py install
 ```
 
 # Classification
@@ -85,3 +92,33 @@ y  = (
 
 All data is converted to strings. This is conterintuitive and different than
 most machine learning libraries, but helps with working with variable X/y data.
+
+# Examples
+
+```bash
+% for i in test-data/*.test; do echo; echo -en "$i: "; data_file=$(echo $i|sed 's/.test/.data/g'); hashedml classify $data_file $i ; done
+
+test-data/abalone.test: accuracy: 100.0%
+
+test-data/allhypo.test: accuracy: 89.61%
+
+test-data/anneal.test: accuracy: 82.0%
+
+test-data/arrhythmia.test: accuracy: 100.0%
+
+test-data/breast-cancer.test: accuracy: 100.0%
+
+test-data/bupa.test: accuracy: 100.0%
+
+test-data/glass.test: accuracy: 100.0%
+
+test-data/iris.test: accuracy: 100.0%
+
+test-data/long.test: accuracy: 100.0%
+
+test-data/parkinsons_updrs.test: accuracy: 100.0%
+
+test-data/soybean-large.test: accuracy: 97.87%
+
+test-data/tic-tac-toe.test: accuracy: 100.0%
+```

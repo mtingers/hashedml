@@ -6,6 +6,7 @@ setup(
     version='0.0.1',
     description='Hash based machine learning',
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     url='https://github.com/mtingers/hashedml',
     download_url='https://pypi.python.org/pypi/hashedml',
     license='MIT',
@@ -25,5 +26,10 @@ setup(
     install_requires=[
         'textblob',
     ],
+    entry_points={
+        'console_scripts': [
+            'hashedml=hashedml.hashedml:main',
+        ],
+    },
     packages=find_packages(exclude=['tests*']),
 )
