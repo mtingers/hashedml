@@ -4,7 +4,7 @@ A machine learning library that uses a different approach: string hashing
 
 # Installation
 
-PyPI (not available yet):
+PyPI:
 ```
 pip install -U hashedml
 ```
