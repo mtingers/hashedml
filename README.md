@@ -56,8 +56,6 @@ from hashedml import HashedML
 
 model = HashedML(nback=4, stm=True)
 token_q = deque(maxlen=model.nback)
-tokens = []
-
 tokens = TextBlob(open('training.text').read()).tokens
 
 # Learn
