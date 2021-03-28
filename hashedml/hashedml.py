@@ -161,7 +161,7 @@ def _main_classify():
         p = model.test(X, y)
         if p == y:
             correct += 1
-    print('accuracy: {}%'.format(model.accuracy()*100))
+    print('accuracy: {:.2f}%'.format(model.accuracy()*100))
 
 
 def _fix_tokens(tokens):
