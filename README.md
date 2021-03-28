@@ -135,7 +135,7 @@ most machine learning libraries, but helps with working with variable X/y data.
 # Examples
 
 ```bash
-% for i in test-data/*.test; do echo; echo -en "$i: "; data_file=$(echo $i|sed 's/.test/.data/g'); hashedml classify $data_file $i ; done
+% for i in test-data/*.test; do echo -en "$i: "; data_file=$(echo $i|sed 's/.test/.data/g'); hashedml classify $data_file $i ; done
 
 test-data/abalone.test: accuracy: 100.0%
 test-data/allhypo.test: accuracy: 89.61%
