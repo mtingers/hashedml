@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='hashedml',
-    version='0.0.1',
+    version='0.0.2',
     description='Hash based machine learning',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
