@@ -61,8 +61,8 @@ for i in tokens:
     token_q.append(i)
     if len(token_q) != model.nback:
         continue
-    X = list(token_q)tq[:-1]
-    y = list(token_q)tq[-1]
+    X = list(token_q)[:-1]
+    y = list(token_q)[-1]
     model.fit(X, y)
 
 # Generate
