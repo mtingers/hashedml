@@ -22,14 +22,14 @@ Example:
 
 ```python
 model = HashedML()
-iris_data = open('iris.data').read().split('\n')
+iris_data = open('test-data/iris.data').read().split('\n')
 for i in iris_data:
     i = i.split(',')
     X = i[:-1]
     y = i[-1]
     model.fit(X, y)
 
-iris_test = open('iris.test').read().split('\n')
+iris_test = open('test-data/iris.test').read().split('\n')
 for i in irist_test:
     i = i.split(',')
     X = i[:-1]
