@@ -21,6 +21,8 @@ HashedML takes the simple `fit(X, y)` / `predict(X)` approach.
 Example:
 
 ```python
+from hashedml import HashedML
+
 model = HashedML()
 iris_data = open('test-data/iris.data').read().split('\n')
 for i in iris_data:
@@ -50,6 +52,8 @@ Example:
 
 ```python
 from collections import deque
+from hashedml import HashedML
+
 model = HashedML(nback=4, stm=True)
 token_q = deque(maxlen=model.nback)
 tokens = []
