@@ -54,7 +54,7 @@ Example:
 from collections import deque
 from hashedml import HashedML
 
-model = HashedML(nback=4, stm=True)
+model = HashedML(nback=4)
 token_q = deque(maxlen=model.nback)
 tokens = TextBlob(open('training.text').read()).tokens
 
@@ -150,3 +150,15 @@ test-data/parkinsons_updrs.test: accuracy: 100.0%
 test-data/soybean-large.test: accuracy: 97.87%
 test-data/tic-tac-toe.test: accuracy: 100.0%
 ```
+
+# Method Parameter Notes
+
+* `HashedML.predict(X, return_one=True)` -- Return a single highest rated item
+* `HashedML.predict(X, return_one=False)` -- Return a list of top 10 predictions
+* `HashedML(nback=4)` -- Used with `generate()` to decide how much lookback is
+    used for providing the next item for the output sequence.
+* `HashedML.generate(X, nwords=100)` -- Run generation 100 times
+* `HashedML.generate(X, stm=True)` -- Use short-term memory logic to try to keep
+    on topic.
+* `HashedML.generate(X, seperator=' ')` -- Inspect generated items and make sure
+    it ends with this separator.
