@@ -71,7 +71,7 @@ for i in tokens:
 output = model.generate(
     ('What', 'is'),
     nwords=500,
-    seperator=' '
+    separator=' '
 )
 print(output)
 ```
@@ -160,5 +160,7 @@ test-data/tic-tac-toe.test: accuracy: 100.0%
 * `HashedML.generate(X, nwords=100)` -- Run generation 100 times
 * `HashedML.generate(X, stm=True)` -- Use short-term memory logic to try to keep
     on topic.
-* `HashedML.generate(X, seperator=' ')` -- Inspect generated items and make sure
-    it ends with this separator.
+* `HashedML.generate(X, separator=' ')` -- Inspect generated items and make sure
+    it ends with this separator. An example would be if input text data
+    stripped out spaces (e.g. output could be `Hello,world.Nospaces` or with
+    separator specified: `Hello, world. No spaces`)

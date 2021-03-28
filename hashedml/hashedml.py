@@ -88,7 +88,7 @@ class HashedML:
     def accuracy(self):
         return self._accuracy
 
-    def generate(self, X, nwords=100, stm=True, seperator=' '):
+    def generate(self, X, nwords=100, stm=True, separator=' '):
         output = ' '.join([str(i) for i in X])+' '
         prev = ''
         prevs = deque(maxlen=self.nback)
@@ -126,8 +126,8 @@ class HashedML:
             X.append(guess)
             if len(X)+1 > self.nback:
                 X = X[1:]
-            if not seperator in guess:
-                guess = '{}{}'.format(guess, seperator)
+            if not separator in guess:
+                guess = '{}{}'.format(guess, separator)
             output_tmp = '{}{}'.format(output, guess)
             tb = TextBlob(output_tmp)
             ngrams = tb.ngrams(n=self.nback*2)
@@ -210,7 +210,7 @@ def _main_generate():
     output = model.generate(
         sys.argv[3].split(' ')[:model.nback-1],
         nwords=int(sys.argv[2]),
-        seperator=' ')
+        separator=' ')
     print('output:')
     print(output)
 
