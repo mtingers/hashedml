@@ -74,6 +74,39 @@ output = model.generate(
 print(output)
 ```
 
+Example using `hashedml` test CLI program:
+```bash
+(venv) foo % hashedml generate 120 'Computer science' test-data/computerprogramming.txt
+input-file: test-data/computerprogramming.txt
+output:
+Computer science abstracting the code, making it targetable to varying machine
+instruction sets via compilation declarations and heuristics. The first
+compiler for a programming language was developed by seven programmers,
+including Adele Goldberg, in the 1970s. One of the first object-oriented
+programming languages, Smalltalk, was developed by seven programmers,
+including Adele in the 1970s. One of the first programming languages,
+Smalltalk, was developed by Grace Hopper. When Hopper went to work on UNIVAC in
+1949, she brought the idea of using compilers with her. Compilers harness the
+power of computers to make programming easier by allowing programmers to
+specify calculations by entering a formula using infix notation
+( e.g., Y = X * 2 + 5 * X + 9
+```
+```
+(venv) foo % hashedml generate 120 'Computer science' test-data/computerprogramming.txt
+input-file: test-data/computerprogramming.txt
+output:
+Computer science abstracting the code, making it targetable to varying machine
+instruction sets via compilation declarations and heuristics. The first
+compiler for a programming language was developed by Grace Hopper. When Hopper
+went to work on UNIVAC in 1949, she brought the idea of using compilers with
+her. Compilers harness the power of computers to make programming easier by
+allowing programmers to specify calculations by entering a formula using infix
+notation ( e.g., Y = X * 2 + 5 * X + 9 ) for example. FORTRAN, the first widely
+used high-level language to have a functional implementation which permitted
+the abstraction of reusable blocks of code, came out in 1957 and many other
+languages were soon developed that let the
+```
+
 # Variable X Input & Non-numerical X or Y
 The X value can be of varying length/dimensions. For example, this is valid:
 ```python
@@ -99,26 +132,15 @@ most machine learning libraries, but helps with working with variable X/y data.
 % for i in test-data/*.test; do echo; echo -en "$i: "; data_file=$(echo $i|sed 's/.test/.data/g'); hashedml classify $data_file $i ; done
 
 test-data/abalone.test: accuracy: 100.0%
-
 test-data/allhypo.test: accuracy: 89.61%
-
 test-data/anneal.test: accuracy: 82.0%
-
 test-data/arrhythmia.test: accuracy: 100.0%
-
 test-data/breast-cancer.test: accuracy: 100.0%
-
 test-data/bupa.test: accuracy: 100.0%
-
 test-data/glass.test: accuracy: 100.0%
-
 test-data/iris.test: accuracy: 100.0%
-
 test-data/long.test: accuracy: 100.0%
-
 test-data/parkinsons_updrs.test: accuracy: 100.0%
-
 test-data/soybean-large.test: accuracy: 97.87%
-
 test-data/tic-tac-toe.test: accuracy: 100.0%
 ```

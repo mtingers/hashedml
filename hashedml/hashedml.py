@@ -182,7 +182,7 @@ def _main_generate():
     model = HashedML(nback=4)
     dq = deque(maxlen=model.nback)
     tokens = []
-    for fpath in sys.argv[3:]:
+    for fpath in sys.argv[4:]:
         print('input-file:', fpath)
         ##tokens += re.findall(r"[\w'\"]+|[.,!?;\n]", open(fpath).read())
         #tokens += re.findall(r"\w+|[^\w\s]|\n", open(fpath).read(), re.UNICODE)
@@ -208,20 +208,20 @@ def _main_generate():
         y = c[-1] #.strip()
         model.fit(X, y)
     output = model.generate(
-        sys.argv[2].split(' ')[:model.nback-1],
-        nwords=500,
+        sys.argv[3].split(' ')[:model.nback-1],
+        nwords=int(sys.argv[2]),
         seperator=' ')
     print('output:')
     print(output)
 
 def _usage():
     print('usage:')
-    print(' {} <classify|generate> <a> <b>'.format(sys.argv[0]))
+    print(' {} <classify|generate> ...'.format(sys.argv[0]))
     print(' {} classify <train-csv> <test-csv>'.format(sys.argv[0]))
     print(' {} classify iris.data iris.test'.format(sys.argv[0]))
-    print(' {} generate <start> <input-file> [<input-file>] ...'.format(
+    print(' {} generate <nwords> <start> <input-file> [<input-file>] ...'.format(
         sys.argv[0]))
-    print(' {} generate "Where are we" input/*txt other/foo.txt'.format(
+    print(' {} generate 200 "Where are we" input/*txt other/foo.txt'.format(
         sys.argv[0]))
     exit(1)
 
