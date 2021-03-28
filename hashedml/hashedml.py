@@ -11,7 +11,7 @@ FNV_MAX = FNV**7
 HSH_P = 211
 
 def find_nearest(array, value):
-    """Find closet value in array to 'value' param""" 
+    """Find closet value in array to 'value' param"""
     idx,val = min(enumerate(array), key=lambda x: abs(x[1]-value))
     return val
 
@@ -171,7 +171,7 @@ def _fix_tokens(tokens):
         ';', ':', '“', '’', '’' '”', '”', '“'
     )
     for i in tokens:
-        if new_tokens and i in special: 
+        if new_tokens and i in special:
             new_tokens[-1] = new_tokens[-1]+i
         else:
             new_tokens.append(i)
