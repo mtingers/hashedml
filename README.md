@@ -137,18 +137,17 @@ most machine learning libraries, but helps with working with variable X/y data.
 ```bash
 % for i in test-data/*.test; do echo -en "$i: "; data_file=$(echo $i|sed 's/.test/.data/g'); hashedml classify $data_file $i ; done
 
-test-data/abalone.test: accuracy: 100.0%
-test-data/allhypo.test: accuracy: 89.61%
-test-data/anneal.test: accuracy: 82.0%
-test-data/arrhythmia.test: accuracy: 100.0%
-test-data/breast-cancer.test: accuracy: 100.0%
-test-data/bupa.test: accuracy: 100.0%
-test-data/glass.test: accuracy: 100.0%
-test-data/iris.test: accuracy: 100.0%
-test-data/long.test: accuracy: 100.0%
-test-data/parkinsons_updrs.test: accuracy: 100.0%
-test-data/soybean-large.test: accuracy: 97.87%
-test-data/tic-tac-toe.test: accuracy: 100.0%
+test-data/abalone.test: accuracy: 9.22%
+test-data/allhypo.test: accuracy: 88.42%
+test-data/anneal.test: accuracy: 78.86999999999999%
+test-data/arrhythmia.test: accuracy: 38.0%
+test-data/breast-cancer.test: accuracy: 66.32000000000001%
+test-data/bupa.test: accuracy: 55.26%
+test-data/glass.test: accuracy: 33.800000000000004%
+test-data/iris.test: accuracy: 95.83%
+test-data/parkinsons_updrs.test: accuracy: 0.0%
+test-data/soybean-large.test: accuracy: 97.06%
+test-data/tic-tac-toe.test: accuracy: 82.13000000000001%
 ```
 
 # Method Parameter Notes
