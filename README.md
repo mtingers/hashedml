@@ -41,7 +41,7 @@ HashedML can also generate data after learning.
 
 Example:
 
-```
+```python
 from collections import deque
 model = HashedML(nback=4, stm=True)
 token_q = deque(maxlen=model.nback)
@@ -69,7 +69,7 @@ print(output)
 
 # Variable X Input & Non-numerical X or Y
 The X value can be of varying length/dimensions. For example, this is valid:
-```
+```python
 X = (
     (1, 2, 3),
     (1, 2),
