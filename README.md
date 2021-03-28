@@ -155,8 +155,8 @@ test-data/tic-tac-toe.test: accuracy: 100.0%
 
 * `HashedML.predict(X, return_one=True)` -- Return a single highest rated item
 * `HashedML.predict(X, return_one=False)` -- Return a list of top 10 predictions
-* `HashedML(nback=4)` -- Used with `generate()` to decide how much lookback is
-    used for providing the next item for the output sequence.
+* `HashedML(nback=4)` -- Used with `generate()` logic for tracking history of
+    generated items and what to feed next as X input.
 * `HashedML.generate(X, nwords=100)` -- Run generation 100 times
 * `HashedML.generate(X, stm=True)` -- Use short-term memory logic to try to keep
     on topic.
