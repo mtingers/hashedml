@@ -31,5 +31,5 @@ setup(
             'hashedml=hashedml.hashedml:main',
         ],
     },
-    packages=find_packages(exclude=['tests*']),
+    packages=find_packages(),
 )

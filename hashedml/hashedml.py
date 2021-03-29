@@ -54,8 +54,8 @@ class HashedML:
             hsh_end += hsh
         return hsh_end
 
-    def fit(self, X, y):
-        y = str(y)
+    def _fit(self, X, y):
+        y = y #str(y)
         X = [str(i) for i in X]
         for i in X:
             h = self._hashit(X)
@@ -64,7 +64,14 @@ class HashedML:
             if not y in self.hmap[h]:
                 self.hmap[h].append(y)
 
-    def predict(self, X, return_one=True):
+    def fit(self, X, y):
+        if not isinstance(X[0], list):
+            X = [X]
+            y = [y]
+        for i in range(len(X)):
+            self._fit(X[i], y[i])
+
+    def _predict(self, X, return_one=True):
         X = [str(i) for i in X]
         h = self._hashit(X)
         nearest = find_nearest(list(self.hmap.keys()), h)
@@ -77,18 +84,33 @@ class HashedML:
                 prediction.append(i[0])
         return prediction
 
+    def predict(self, X, return_one=True):
+        predictions = []
+        if not isinstance(X[0], list):
+            X = [X]
+        for x in X:
+            predictions.append(self._predict(x, return_one=return_one))
+        return predictions
+
     def test(self, X, y):
-        p = self.predict(X, return_one=True)
-        if p == y:
-            self._tests_correct += 1
-        self._tests += 1
-        self._accuracy = round(self._tests_correct/self._tests, 4)
-        return p
+        predictions = []
+        if not isinstance(X[0], list):
+            X = [X]
+            y = [y]
+        predictions = self.predict(X, return_one=True)
+        for i in range(len(X)):
+            if predictions[i] == y[i]:
+                self._tests_correct += 1
+            self._tests += 1
+            self._accuracy = round(self._tests_correct/self._tests, 4)
+        return predictions
 
     def accuracy(self):
         return self._accuracy
 
     def generate(self, X, nwords=100, stm=True, separator=' '):
+        if isinstance(X[0], list):
+            raise Exception('generate() only supports X of 1 dimension')
         output = ' '.join([str(i) for i in X])+' '
         prev = ''
         prevs = deque(maxlen=self.nback)
@@ -154,13 +176,10 @@ def _main_classify():
         X = i.split(',')[:-1]
         y = i.split(',')[-1]
         model.fit(X, y)
-    correct = 0
     for i in test_csv:
         X = i.split(',')[:-1]
         y = i.split(',')[-1]
         p = model.test(X, y)
-        if p == y:
-            correct += 1
     print('accuracy: {:.2f}%'.format(model.accuracy()*100))
 
 
