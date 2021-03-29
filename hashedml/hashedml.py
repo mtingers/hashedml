@@ -79,6 +79,8 @@ class HashedML:
             prediction = most_common(self.hmap[nearest])
         else:
             prediction = []
+            print(self.hmap[nearest])
+            counts = Counter(self.hmap[nearest])
             top10 = counts.most_common(10)
             for i in top10:
                 prediction.append(i[0])
