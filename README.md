@@ -78,7 +78,7 @@ print(output)
 
 Example using `hashedml` test CLI program:
 ```bash
-(venv) foo % hashedml generate 120 'Computer science' test-data/computerprogramming.txt
+(venv) foo % hashedml generate ' ' 120 'Computer science' test-data/computerprogramming.txt
 ```
 ```
 input-file: test-data/computerprogramming.txt
@@ -96,7 +96,7 @@ specify calculations by entering a formula using infix notation
 ( e.g., Y = X * 2 + 5 * X + 9
 ```
 ```bash
-(venv) foo % hashedml generate 120 'Computer science' test-data/computerprogramming.txt
+(venv) foo % hashedml generate ' ' 120 'Computer science' test-data/computerprogramming.txt
 ```
 ```
 input-file: test-data/computerprogramming.txt
