@@ -164,3 +164,110 @@ test-data/tic-tac-toe.test: accuracy: 82.13%
     it ends with this separator. An example would be if input text data
     stripped out spaces (e.g. output could be `Hello,world.Nospaces` or with
     separator specified: `Hello, world. No spaces`)
+
+# Scikit-learn Comparison
+
+Here is a test of various classifiers from scikit-learn, trained/tested against
+the same datasets from the examples section:
+
+```
+test-data/abalone.test:
+                  KNeighborsClassifier(n_neighbors=3) 50.72%
+                        SVC(C=0.025, kernel='linear') 51.22%
+                                    SVC(C=1, gamma=2) 51.59%
+                  DecisionTreeClassifier(max_depth=5) 54.76%
+   RandomForestClassifier(max_depth=5, max_features=1 53.24%
+               MLPClassifier(alpha=1, max_iter=10000) 52.31%
+                                         GaussianNB() 51.44%
+                                              AVERAGE 52.18%
+test-data/allhypo.test:
+                  KNeighborsClassifier(n_neighbors=3) 93.68%
+                        SVC(C=0.025, kernel='linear') 93.46%
+                                    SVC(C=1, gamma=2) 91.53%
+                  DecisionTreeClassifier(max_depth=5) 98.61%
+   RandomForestClassifier(max_depth=5, max_features=1 91.85%
+               MLPClassifier(alpha=1, max_iter=10000) 96.78%
+                                         GaussianNB() 20.47%
+                                              AVERAGE 83.77%
+test-data/anneal.test:
+                  KNeighborsClassifier(n_neighbors=3) 81.51%
+                        SVC(C=0.025, kernel='linear') 97.36%
+                                    SVC(C=1, gamma=2) 73.21%
+                  DecisionTreeClassifier(max_depth=5) 97.74%
+   RandomForestClassifier(max_depth=5, max_features=1 78.11%
+               MLPClassifier(alpha=1, max_iter=10000) 93.21%
+                                         GaussianNB() 67.17%
+                                              AVERAGE 84.04%
+test-data/arrhythmia.test:
+                  KNeighborsClassifier(n_neighbors=3) 57.33%
+                        SVC(C=0.025, kernel='linear') 66.67%
+                                    SVC(C=1, gamma=2) 51.33%
+                  DecisionTreeClassifier(max_depth=5) 51.33%
+   RandomForestClassifier(max_depth=5, max_features=1 54.00%
+               MLPClassifier(alpha=1, max_iter=10000) 58.67%
+                                         GaussianNB() 17.33%
+                                              AVERAGE 50.95%
+test-data/breast-cancer.test:
+                  KNeighborsClassifier(n_neighbors=3) 68.42%
+                        SVC(C=0.025, kernel='linear') 71.58%
+                                    SVC(C=1, gamma=2) 73.68%
+                  DecisionTreeClassifier(max_depth=5) 64.21%
+   RandomForestClassifier(max_depth=5, max_features=1 73.68%
+               MLPClassifier(alpha=1, max_iter=10000) 65.26%
+                                         GaussianNB() 75.79%
+                                              AVERAGE 70.38%
+test-data/bupa.test:
+                  KNeighborsClassifier(n_neighbors=3) 63.16%
+                        SVC(C=0.025, kernel='linear') 64.91%
+                                    SVC(C=1, gamma=2) 52.63%
+                  DecisionTreeClassifier(max_depth=5) 61.40%
+   RandomForestClassifier(max_depth=5, max_features=1 59.65%
+               MLPClassifier(alpha=1, max_iter=10000) 66.67%
+                                         GaussianNB() 59.65%
+                                              AVERAGE 61.15%
+test-data/glass.test:
+                  KNeighborsClassifier(n_neighbors=3) 61.97%
+                        SVC(C=0.025, kernel='linear') 36.62%
+                                    SVC(C=1, gamma=2) 54.93%
+                  DecisionTreeClassifier(max_depth=5) 66.20%
+   RandomForestClassifier(max_depth=5, max_features=1 64.79%
+               MLPClassifier(alpha=1, max_iter=10000) 25.35%
+                                         GaussianNB() 57.75%
+                                              AVERAGE 52.52%
+test-data/iris.test:
+                  KNeighborsClassifier(n_neighbors=3) 95.83%
+                        SVC(C=0.025, kernel='linear') 95.83%
+                                    SVC(C=1, gamma=2) 93.75%
+                  DecisionTreeClassifier(max_depth=5) 95.83%
+   RandomForestClassifier(max_depth=5, max_features=1 95.83%
+               MLPClassifier(alpha=1, max_iter=10000) 95.83%
+                                         GaussianNB() 93.75%
+                                              AVERAGE 95.24%
+test-data/parkinsons_updrs.test:
+                  KNeighborsClassifier(n_neighbors=3) 89.27%
+                        SVC(C=0.025, kernel='linear') 98.62%
+                                    SVC(C=1, gamma=2) 62.21%
+                  DecisionTreeClassifier(max_depth=5) 27.63%
+   RandomForestClassifier(max_depth=5, max_features=1 43.26%
+               MLPClassifier(alpha=1, max_iter=10000) 93.11%
+                                         GaussianNB() 95.35%
+                                              AVERAGE 72.78%
+test-data/soybean-large.test:
+                  KNeighborsClassifier(n_neighbors=3) 82.35%
+                        SVC(C=0.025, kernel='linear') 71.57%
+                                    SVC(C=1, gamma=2) 18.63%
+                  DecisionTreeClassifier(max_depth=5) 73.53%
+   RandomForestClassifier(max_depth=5, max_features=1 75.49%
+               MLPClassifier(alpha=1, max_iter=10000) 62.75%
+                                         GaussianNB() 82.35%
+                                              AVERAGE 66.67%
+test-data/tic-tac-toe.test:
+                  KNeighborsClassifier(n_neighbors=3) 83.07%
+                        SVC(C=0.025, kernel='linear') 70.53%
+                                    SVC(C=1, gamma=2) 70.53%
+                  DecisionTreeClassifier(max_depth=5) 90.91%
+   RandomForestClassifier(max_depth=5, max_features=1 76.49%
+               MLPClassifier(alpha=1, max_iter=10000) 84.33%
+                                         GaussianNB() 73.04%
+                                              AVERAGE 78.41%
+```
