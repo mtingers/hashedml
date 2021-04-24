@@ -38,6 +38,7 @@ class HashedML:
         self._accuracy = 0.0
         self._stm = deque(maxlen=20)
         self._stm_last = 0
+        self._gen_prevs = deque(maxlen=self.nback)
 
     def _hashit(self, X):
         hsh_end = 0
@@ -79,7 +80,6 @@ class HashedML:
             prediction = most_common(self.hmap[nearest])
         else:
             prediction = []
-            print(self.hmap[nearest])
             counts = Counter(self.hmap[nearest])
             top10 = counts.most_common(10)
             for i in top10:
@@ -115,7 +115,6 @@ class HashedML:
             raise Exception('generate() only supports X of 1 dimension')
         output = ' '.join([str(i) for i in X])+' '
         prev = ''
-        prevs = deque(maxlen=self.nback)
         for _ in range(nwords):
             h = self._hashit(X)
             nearest = find_nearest(list(self.hmap.keys()), h)
@@ -124,13 +123,13 @@ class HashedML:
                 # keyword extraction
                 if n_items < 3:
                     self._stm.append(nearest)
-                    guess = most_common(self.hmap[nearest], exclude=list(prevs))
+                    guess = most_common(self.hmap[nearest], exclude=list(self._gen_prevs))
                     self._stm_last += 1
                 elif self._stm_last > 15:
                     found = False
                     for _ in range(10):
                         X2 = X[0:-1]
-                        X2.append(most_common(self.hmap[nearest]))
+                        X2.append(most_common(self.hmap[nearest], exclude=list(self._gen_prevs)))
                         h = self._hashit(X)
                         nearest = find_nearest(list(self.hmap.keys()), h)
                         n_items = len(set(self.hmap[nearest]))
@@ -140,13 +139,13 @@ class HashedML:
                     if not found:
                         h = self._hashit(X)
                         nearest = find_nearest(list(self.hmap.keys()), h)
-                    guess = most_common(self.hmap[nearest], exclude=list(prevs))
+                    guess = most_common(self.hmap[nearest], exclude=list(self._gen_prevs))
                     self._stm_last = 0
                 else:
-                    guess = most_common(self.hmap[nearest], exclude=list(prevs))
+                    guess = most_common(self.hmap[nearest], exclude=list(self._gen_prevs))
                     self._stm_last += 1
             else:
-                guess = most_common(self.hmap[nearest], exclude=list(prevs))
+                guess = most_common(self.hmap[nearest], exclude=list(self._gen_prevs))
             X.append(guess)
             if len(X)+1 > self.nback:
                 X = X[1:]
@@ -162,7 +161,9 @@ class HashedML:
             else:
                 output = output_tmp
             if not guess in ('\n', ' '):
-                prevs.append(guess)
+                self._gen_prevs.append(guess)
+            if output[-1] != separator:
+                output += separator
         return output
 
     def dump_map(self):
@@ -213,7 +214,7 @@ def _main_generate():
     from collections import deque
     if len(sys.argv) < 6:
         _usage()
-    model = HashedML(nback=4)
+    model = HashedML(nback=5)
     dq = deque(maxlen=model.nback)
     tokens = []
     for fpath in sys.argv[5:]:
@@ -227,11 +228,15 @@ def _main_generate():
         #except:
         #    print('pass:', fpath)
         try:
-            tb = TextBlob(open(fpath).read())
+            #tb1 = TextBlob(open(fpath).read())
+            #tb2 = TextBlob(open(fpath).read().lower())
+            tokens_cur = re.findall("[\\w'?\"!,.]+|[^\\w]+", open(fpath).read())
         except Exception as err:
             print(err, fpath)
             continue
-        tokens += tb.tokens
+        #tokens += tb1.tokens
+        #tokens += tb2.tokens
+        tokens += tokens_cur
     tokens = _fix_tokens(tokens)
     for i in tokens:
         dq.append(i)
@@ -244,7 +249,8 @@ def _main_generate():
     output = model.generate(
         sys.argv[4].split(' ')[:model.nback-1],
         nwords=int(sys.argv[3]),
-        separator=sys.argv[2])
+        separator=sys.argv[2],
+        stm=True)
     print('output:')
     print(output)
 
