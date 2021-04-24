@@ -129,8 +129,8 @@ y  = (
 )
 ```
 
-All data is converted to strings. This is conterintuitive and different than
-most machine learning libraries, but helps with working with variable X/y data.
+All X data is converted to strings. This is counterintuitive and different than
+most machine learning libraries, but done to feed the hashing function.
 
 # Examples
 
